@@ -1,0 +1,20 @@
+ignore-empty-password
+font="FiraCodaNerdFont"
+
+clock
+timestr=%R
+datestr=%a, %e of %B
+
+image=/home/fernando/.local/state/wpaperd/wallpapers/HDMI-A-1
+
+fade-in=1
+
+effect-greyscale
+# effect-blur=20x6
+# effect-pixelate=5
+
+indicator
+indicator-radius=200
+
+indicator-thickness=20
+indicator-caps-lock

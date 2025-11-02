@@ -16,7 +16,8 @@
     "temperature"
   ],
   "modules-center": [
-    "sway/workspaces"
+    "sway/workspaces",
+    "sway/mode"
   ],
   "modules-right": [
     "wlr/taskbar",
@@ -78,6 +79,9 @@
     "disable-scroll": true,
     "all-outputs": true,
     "show-special": true
+  },
+  "sway/mode": {
+    "format": " {} "
   },
   /* === Modules Right === */
   "wlr/taskbar": {

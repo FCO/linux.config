@@ -120,6 +120,14 @@ window#waybar.hidden {
 
 #workspaces button.active:hover {}
 
+#mode {
+  background: rgba(100, 0, 0, 0.5);
+  border-radius: 10px;
+  margin: 6px 5px;
+  padding: 0px 6px;
+  color: white;
+}
+
 /* Modules right */
 #taskbar {
   background: transparent;

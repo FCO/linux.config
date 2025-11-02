@@ -20,8 +20,14 @@ set $term foot
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-set $menu exec $term -a launcher -e /home/fernando/Downloads/sway-launcher-desktop.sh
+for_window [app_id="^launcher|swayimg$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [app_id="^yazi$"] floating enable, sticky enable, resize set 100 ppt 60 ppt, border pixel 10
+set $menu exec $term -a launcher -e ~/Downloads/sway-launcher-desktop.sh
+
+set $home ~
+set $browser chromium
+set $screenshot ~/.config/sway/sway-screenshot
+set $filemanager yazi
 
 seat seat0 hide_cursor 3000
 
@@ -29,13 +35,17 @@ font FiraMonoNerdFont 18
 
 include /etc/sway/config-vars.d/*
 
-exec_always /home/fernando/.config/sway/autotiling.py
+exec_always ~/.config/sway/autotiling.py
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/fernando/.config/sway/guanabara2.jpg fill
+# output * bg ~/Pictures/Wallpapers/guanabara2.jpg fill
+
+exec chmod 0700 /run/user/$(id -u)
+exec ~/.local/bin/wpaperd -d
+
 #
 # Example configuration:
 #
@@ -73,7 +83,7 @@ exec swayidle -w \
          before-sleep $lock
 
 set $lockman exec bash ~/.config/sway/lockman.sh
-bindsym $mod+Ctrl+l exec $lockman
+bindsym $mod+Ctrl+l exec wlogout --margin 300
 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -100,6 +110,9 @@ bindsym $mod+Ctrl+l exec $lockman
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+
+    # Start a browser
+    bindsym $mod+Alt+k exec $browser
 
     # Kill focused window
     bindsym $mod+q kill
@@ -180,9 +193,9 @@ bindsym $mod+Ctrl+l exec $lockman
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -231,6 +244,42 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+mode "screenshot" {
+    bindsym 3 mode "default" ; exec $screenshot -m output --clipboard-only
+    bindsym 4 mode "default" ; exec $screenshot -m window --clipboard-only
+    bindsym 5 mode "default" ; exec $screenshot -m region --clipboard-only
+
+    bindsym Shift+3 mode "default" ; exec $screenshot -m output -o $home/Pictures/Screenshots
+    bindsym Shift+4 mode "default" ; exec $screenshot -m window -o $home/Pictures/Screenshots
+    bindsym Shift+5 mode "default" ; exec $screenshot -m region -o $home/Pictures/Screenshots
+
+    bindsym Ctrl+Shift+3 mode "default" ; exec $screenshot -m output -o $home/Pictures/Screenshots -- $term -a yazi -e $filemanager
+    bindsym Ctrl+Shift+4 mode "default" ; exec $screenshot -m window -o $home/Pictures/Screenshots -- $term -a yazi -e $filemanager
+    bindsym Ctrl+Shift+5 mode "default" ; exec $screenshot -m region -o $home/Pictures/Screenshots -- $term -a yazi -e $filemanager
+
+    bindsym v mode "default" ; exec $term -a yazi -e $filemanager $home/Pictures/Screenshots
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+Alt+s mode "screenshot"
+
+mode "open" {
+    bindsym j mode "default" ; exec $term
+    bindsym k mode "default" ; exec $browser
+    bindsym l mode "default" ; exec $browser http://irccloud.com
+
+    bindsym q mode "default" ; kill
+    bindsym $mod+q mode "default" ; kill
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym f+d+s+a mode "open"
+bindsym j+k+l+Semicolon mode "open"
+bindsym F12 mode "open"
 
 #
 # Status Bar:
