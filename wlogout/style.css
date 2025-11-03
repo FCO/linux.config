@@ -1,7 +1,7 @@
 @import 'colors.css';
 
 * {
-    font-family: "FiraCodaNerdFont", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: "FiraCode Nerd Font SemBd", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
 	background-image: none;
 	transition: 20ms;
 	box-shadow: none;
@@ -16,23 +16,23 @@ window {
 button {
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 20%;
+	background-size: 10%;
 	animation: gradient_f 20s ease-in infinite;
 	border-radius: 80px; /* Increased border radius for a more rounded look */
-	border:0px;
+	border:1px;
 	transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	color: @foreground;
-	background-color: alpha(@primary, 0.5);
+	background-color: alpha(@primary, 0.8);
 }
 
 button:focus {
-	background-color: alpha(@primary, 0.7);
+	background-color: alpha(@primary, 0.9);
     background-size: 25%;
 	border: 0px;
 }
 
 button:hover {
-    background-color: alpha(@primary, 0.9);;
+    background-color: alpha(@primary, 1.0);;
 	opacity: 0.8;
     color: @on_primary;
     background-size: 30%;

@@ -1,13 +1,13 @@
 /* -- Global rules -- */
 * {
   border: none;
-  font-family: "FiraCodaNerdFont";
-  font-size: 18px;
-  min-height: 16px;
+  font-family: "FiraCode Nerd Font SemBd";
+  font-size: 20px;
+  min-height: 18px;
 }
 
 window#waybar {
-  background: rgba(34, 36, 54, 0.6);
+  background: rgba(34, 36, 54, 0.0);
 }
 
 window#waybar.hidden {
@@ -25,6 +25,7 @@ window#waybar.hidden {
 #pulseaudio,
 #pulseaudio-slider,
 #network,
+#window,
 #language {
   color: #161320;
   margin-top: 6px;
@@ -37,6 +38,7 @@ window#waybar.hidden {
 /* Separation to the left */
 #custom-piicon,
 #cpu,
+#window,
 #idle_inhibitor {
   margin-left: 5px;
   border-top-left-radius: 10px;
@@ -46,6 +48,7 @@ window#waybar.hidden {
 /* Separation to the rigth */
 #clock,
 #temperature,
+#window,
 #language {
   margin-right: 5px;
   border-top-right-radius: 10px;
@@ -80,6 +83,10 @@ window#waybar.hidden {
 
 #temperature {
   background: #F8BD96;
+}
+
+#window {
+  background: #B6F2DD
 }
 
 /* Modules center */
@@ -129,6 +136,7 @@ window#waybar.hidden {
 }
 
 /* Modules right */
+#scratchpad,
 #taskbar {
   background: transparent;
   border-radius: 10px;
@@ -136,6 +144,7 @@ window#waybar.hidden {
   margin: 6px 5px;
 }
 
+#scratchpad button,
 #taskbar button {
   padding: 0px 5px;
   margin: 0px 3px;
@@ -143,10 +152,12 @@ window#waybar.hidden {
   transition: background 0.3s ease;
 }
 
+#scratchpad button.active,
 #taskbar button.active {
   background: rgba(34, 36, 54, 0.5);
 }
 
+#scratchpad button:hover,
 #taskbar button:hover {
   background: rgba(34, 36, 54, 0.5);
 }

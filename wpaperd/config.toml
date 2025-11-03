@@ -1,5 +1,5 @@
 [default]
-duration = "30s"
+duration = "30m"
 mode = "fit"
 sorting = "random"
 queue-size = 100

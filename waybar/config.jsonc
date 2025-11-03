@@ -13,13 +13,15 @@
     "cpu",
     "memory",
     "disk",
-    "temperature"
+    "temperature",
+    "sway/window"
   ],
   "modules-center": [
     "sway/workspaces",
     "sway/mode"
   ],
   "modules-right": [
+    "sway/scratchpad",
     "wlr/taskbar",
     "idle_inhibitor",
     "pulseaudio",
@@ -63,6 +65,7 @@
       ""
     ]
   },
+  "sway/window": {},
   /* === Modules Center === */
   "sway/workspaces": {
     "format": "{icon}",
@@ -84,6 +87,7 @@
     "format": " {} "
   },
   /* === Modules Right === */
+  "sway/scratchpad": {},
   "wlr/taskbar": {
     "format": "{icon}",
     "all-outputs": true,
@@ -104,10 +108,11 @@
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
-    "format-muted": "muted ",
+    "format-muted": "muted 🔇",
     "format-icons": {
       "default": [
-        "",
+        "🔈️",
+        "🔉",
         "🔊"
       ]
     }
@@ -115,9 +120,11 @@
   "network": {
     "format": "{ifname}",
     "format-ethernet": "{ifname} 󰈀",
+    "format-wifi": " ",
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
     "format-disconnected": " ",
-    "tooltip-format": " {ifname} via {gwaddr}",
-    "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+    "tooltip-format": "  {ifname} via {gwaddr}",
+    "tooltip-format-ethernet": "  {ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50
   },
