@@ -1,11 +1,12 @@
 [default]
 duration = "30m"
-mode = "fit"
-sorting = "random"
+mode = "center"
+sorting = "ascending"
 queue-size = 100
+exec = "~/.config/wpaperd/call-hellwal.sh"
 
 [any]
-path = "/home/fernando/Pictures/Wallpapers"
+path = "~/Pictures/Wallpapers"
 
 # [default.transition.book-flip]
 # [default.transition.bounce]

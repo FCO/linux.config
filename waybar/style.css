@@ -1,3 +1,4 @@
+@import '../../.cache/hellwal/waybar-colors.css';
 /* -- Global rules -- */
 * {
   border: none;
@@ -27,7 +28,7 @@ window#waybar.hidden {
 #network,
 #window,
 #language {
-  color: #161320;
+  color: @color0;
   margin-top: 6px;
   margin-bottom: 6px;
   padding-left: 10px;
@@ -60,45 +61,51 @@ window#waybar.hidden {
 /* Modules left */
 #custom-piicon {
   font-size: 25px;
-  color: #89B4FA;
-  background: #161320;
+  color: @foreground;
+  background: @background;
   padding-right: 17px;
 }
 
 #clock {
-  background: #ABE9B3;
+  background: @color1;
+  color: @foreground;
 }
 
 #cpu {
-  background: #96CDFB;
+  background: @color2;
+  color: @foreground;
 }
 
 #memory {
-  background: #DDB6F2;
+  background: @color3;
+  color: @foreground;
 }
 
 #disk {
-  background: #F5C2E7;
+  background: @color4;
+  color: @foreground;
 }
 
 #temperature {
-  background: #F8BD96;
+  background: @color5;
+  color: @foreground;
 }
 
 #window {
-  background: #B6F2DD
+  background: @color6;
+  color: @foreground;
 }
 
 /* Modules center */
 #workspaces {
-  background: rgba(0, 0, 0, 0.5);
+  background: @background;
   border-radius: 10px;
   margin: 6px 5px;
   padding: 0px 6px;
 }
 
 #workspaces button {
-  color: #B5E8E0;
+  color: @foreground;
   background: transparent;
   padding: 4px 4px;
   transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
@@ -109,7 +116,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-  color: #A6E3A1;
+  color: @cursor;
 }
 
 #workspaces button.occupied {
@@ -117,7 +124,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: #89B4FA;
+  color: @cursor;
   text-shadow: 0 0 4px #ABE9B3;
 }
 
@@ -163,32 +170,26 @@ window#waybar.hidden {
 }
 
 #idle_inhibitor {
-  background: #B5E8E0;
+  background: @color7;
+  color: black;
   padding-right: 15px;
 }
 
 #pulseaudio {
   min-width: 55px;
-  color: #1A1826;
-  background: #F5E0DC;
+  color: @foreground;
+  background: @color8;
 }
-
-#pulseaudio-slider {
-  color: #1A1826;
-  background: #E8A2AF;
-  min-width: 50px;
-}
-
-#pulseaudio-slider slider {}
-
 
 #network {
-  background: #CBA6F7;
+  background: @color9;
+  color: @foreground;
   padding-right: 13px;
 }
 
 #language {
-  background: #A6E3A1;
+  background: @color10;
+  color: @foreground;
   padding-right: 15px;
 }
 

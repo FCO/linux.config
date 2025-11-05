@@ -1,4 +1,4 @@
-@import 'colors.css';
+@import '../../.cache/hellwal/waybar-colors.css';
 
 * {
     font-family: "FiraCode Nerd Font SemBd", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
@@ -18,32 +18,30 @@ button {
 	background-position: center;
 	background-size: 10%;
 	animation: gradient_f 20s ease-in infinite;
-	border-radius: 80px; /* Increased border radius for a more rounded look */
+	border-radius: 80px;
 	border:1px;
 	transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682), box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 	color: @foreground;
-	background-color: alpha(@primary, 0.8);
+	background-color: alpha(@background, 0.8);
 }
 
 button:focus {
-	background-color: alpha(@primary, 0.9);
+	background-color: alpha(@background, 0.9);
     background-size: 25%;
 	border: 0px;
 }
 
 button:hover {
-    background-color: alpha(@primary, 1.0);;
-	opacity: 0.8;
-    color: @on_primary;
+    background-color: alpha(@background, 1.0);
+    color: @cursor;
     background-size: 30%;
     margin: 30px;
     border-radius: 80px;
-    box-shadow: 0 0 50px @shadow;
+    box-shadow: 0 0 50px @border;
 }
 
-/* Adjust the size of the icon or content inside the button */
 button span {
-    font-size: 1.2em; /* Increase the font size */
+    font-size: 1.2em;
 }
 
 #lock {

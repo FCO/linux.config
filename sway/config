@@ -14,23 +14,51 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-exec_always foot --server
-set $term footclient
+# set $term footclient
+set $term foot
+# exec foot --server
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-for_window [app_id="^launcher|swayimg$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-for_window [app_id="^yazi$"] floating enable, sticky enable, resize set 100 ppt 60 ppt, border pixel 10
+for_window [app_id="^launcher|swayimg$"]    \
+    floating enable,                        \
+    sticky enable,                          \
+    resize set 30 ppt 60 ppt,               \
+    border pixel 10
+
+for_window [app_id="^yazi$"]    \
+    floating enable,            \
+    sticky enable,              \
+    resize set 100 ppt 60 ppt,  \
+    border pixel 10
 
 # set $menu exec $term -a launcher -e ~/Downloads/sway-launcher-desktop.sh
-set $menu exec fuzzel --line-height=100 --width=50 --font="FiraCode Nerd Font SemBd:size=50"
+set $menu exec fuzzel   \
+    --line-height=100   \
+    --width=50          \
+    --font="FiraCode Nerd Font SemBd:size=50"
 
 set $home ~
-set $browser chromium
+set $browser firefox
 set $screenshot ~/.config/sway/sway-screenshot
-set $filemanager $term -a yazi -e yazi
+set $filemanager $term -e yazi
+
+exec $term --app-id scratch-term
+for_window [app_id="scratch-term"]  \
+    move to scratchpad,             \
+    mark scratch-term
+
+exec MOZ_ENABLE_WAYLAND=0 $browser --new-window --class=scratch-browser
+for_window [class="scratch-browser"]   \
+    move to scratchpad,                \
+    mark scratch-browser
+
+exec $term --app-id scratch-fm -a scratch-fm -e yazi
+for_window [app_id="scratch-fm"]  \
+    move to scratchpad,             \
+    mark scratch-fm
 
 seat seat0 hide_cursor 3000
 
@@ -46,7 +74,9 @@ exec_always ~/.config/sway/autotiling.py
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # output * bg ~/Pictures/Wallpapers/guanabara2.jpg fill
 
-exec_always chmod 0700 /run/user/$(id -u) && ~/.local/bin/wpaperd -d
+set $perm chmod 0700 /run/user/$(id -u)
+
+exec $perm && ~/.local/bin/wpaperd -d
 
 #
 # Example configuration:
@@ -65,8 +95,16 @@ exec swaync
 # Toggle control center
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
-bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
-bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
+bindsym XF86AudioRaiseVolume    \
+    exec pamixer -i 5           \
+    && pamixer --get-volume     \
+    > $WOBSOCK
+
+bindsym XF86AudioLowerVolume    \
+    exec pamixer -d 5           \
+    && pamixer --get-volume     \
+    > $WOBSOCK
+
 bindsym XF86AudioMute exec pamixer --toggle-mute
 
 bindsym XF86MonBrightnessUp exec sudo light -A 10
@@ -269,11 +307,11 @@ mode "screenshot" {
 }
 bindsym $mod+Shift+Alt+s mode "screenshot"
 
+set $hide-all-but exec ~/.config/sway/hide-all.sh
 mode "open" {
-    bindsym j mode "default" ; exec $term
-    bindsym k mode "default" ; exec $browser
-    bindsym l mode "default" ; exec $browser http://irccloud.com
-    bindsym Semicolon mode "default" ; exec $filemanager
+    bindsym j $hide-all-but "scratch-term"
+    bindsym k $hide-all-but "scratch-browser"
+    bindsym l $hide-all-but "scratch-fm"
 
     bindsym q mode "default" ; kill
     bindsym $mod+q mode "default" ; kill
@@ -310,17 +348,27 @@ mode "open" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+bindsym $mod+o mode "open"
 bindsym f+d+s+a mode "open"
 bindsym j+k+l+Semicolon mode "open"
 bindsym F12 mode "open"
 
-mode "exit" {
-    bindsym $mod+Shift+e exit
+mode "wallpaper" {
+    bindsym j exec $perm && wpaperctl next
+    bindsym k exec $perm && wpaperctl previous
+
+    bindsym Return mode "default" ; reload
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+Slash mode "wallpaper"
+
+mode "quit" {
+    bindsym $mod+Shift+q exit
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode "exit"
+bindsym $mod+Shift+q mode "quit"
 
 #
 # Status Bar:
