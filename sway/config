@@ -41,7 +41,7 @@ set $menu exec fuzzel   \
     --font="FiraCode Nerd Font SemBd:size=50"
 
 set $home ~
-set $browser firefox
+set $browser chromium
 set $screenshot ~/.config/sway/sway-screenshot
 set $filemanager $term -e yazi
 
@@ -50,10 +50,17 @@ for_window [app_id="scratch-term"]  \
     move to scratchpad,             \
     mark scratch-term
 
-exec MOZ_ENABLE_WAYLAND=0 $browser --new-window --class=scratch-browser
+exec MOZ_ENABLE_WAYLAND=0 firefox --new-window --class=scratch-browser
 for_window [class="scratch-browser"]   \
     move to scratchpad,                \
     mark scratch-browser
+
+
+
+exec $home/IRCCloud-linux-armv7l/IRCCloud
+for_window [class="irccloud-nativefier-36ef11"]   \
+    move to scratchpad,                \
+    mark scratch-comm
 
 exec $term --app-id scratch-fm -a scratch-fm -e yazi
 for_window [app_id="scratch-fm"]  \
@@ -309,9 +316,10 @@ bindsym $mod+Shift+Alt+s mode "screenshot"
 
 set $hide-all-but exec ~/.config/sway/hide-all.sh
 mode "open" {
-    bindsym j $hide-all-but "scratch-term"
-    bindsym k $hide-all-but "scratch-browser"
-    bindsym l $hide-all-but "scratch-fm"
+    bindsym j         $hide-all-but "scratch-term"
+    bindsym k         $hide-all-but "scratch-browser"
+    bindsym l         $hide-all-but "scratch-fm"
+    bindsym Semicolon $hide-all-but "scratch-comm"
 
     bindsym q mode "default" ; kill
     bindsym $mod+q mode "default" ; kill
