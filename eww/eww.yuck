@@ -1,0 +1,3 @@
+(include "./dashboard/eww.yuck")
+(include "./music-widget/eww.yuck")
+(include "./clock/eww.yuck")

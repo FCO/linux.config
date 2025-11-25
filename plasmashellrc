@@ -1,0 +1,13 @@
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Pictures/Wallpapers/493083.jpg,file:$HOME/Pictures/Wallpapers/dandadan-evil-eye-5120x2880-22717.jpg,file:$HOME/Pictures/Wallpapers/ash-ketchum-pikachu-5120x2880-17918.jpg,file:$HOME/Pictures/Wallpapers/akaza-vs-tanjiro-6400x5223-23616.jpg,file:$HOME/Pictures/Wallpapers/11020666.jpg,file:$HOME/Pictures/Wallpapers/11020553.jpg,file:$HOME/Pictures/Wallpapers/11020503.jpg,file:$HOME/Pictures/Wallpapers/11020492.jpg,file:$HOME/Pictures/Wallpapers/11020449.jpg,file:$HOME/Pictures/Wallpapers/11020398.jpg,file:$HOME/Pictures/Wallpapers/11020363.jpg,file:$HOME/Pictures/Wallpapers/11020274.jpg,file:$HOME/Pictures/Wallpapers/7676074.jpg,file:$HOME/Pictures/Wallpapers/1140589.jpg,file:$HOME/Pictures/Wallpapers/784549.jpg,file:$HOME/Pictures/Wallpapers/493083.jpg
+Recent URLs[$e]=file:$HOME/Pictures/Wallpapers/
+detailViewIconSize=16
+
+[PlasmaViews][Panel 2][Defaults]
+thickness=44
+
+[PlasmaViews][Panel 24][Defaults]
+thickness=44
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/systemloadviewer_systemmonitor.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/digitalclock_migrate_font_settings.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/keyboardlayout_remove_shortcut.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/klipper_clear_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/keyboardlayout_migrateiconsetting.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/unlock_widgets.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/no_middle_click_paste_on_panels.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/maintain_existing_desktop_icon_sizes.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/mediaframe_migrate_useBackground_setting.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/digitalclock_rename_timezonedisplay_key.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/containmentactions_middlebutton.js

@@ -22,6 +22,15 @@ set $term foot
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
+# exec ~/.config/eww/clock-uptime-profile/launch.sh
+
+# client.focused    #000000 #000000 #ffffff #ffffff #ffffff
+# client.unfocused  #000000 #000000 #ffffff #000000 #000000
+# client.background #000000 #000000 #ffffff #000000 #000000
+# client.urgent     #000000 #000000 #ffffff #ff0000 #ff0000
+
+exec mako
+
 for_window [app_id="^launcher|swayimg$"]    \
     floating enable,                        \
     sticky enable,                          \
@@ -41,35 +50,13 @@ set $menu exec fuzzel   \
     --font="FiraCode Nerd Font SemBd:size=50"
 
 set $home ~
-set $browser chromium
+set $browser chromium --new-window
 set $screenshot ~/.config/sway/sway-screenshot
 set $filemanager $term -e yazi
 
-exec $term --app-id scratch-term
-for_window [app_id="scratch-term"]  \
-    move to scratchpad,             \
-    mark scratch-term
-
-exec MOZ_ENABLE_WAYLAND=0 firefox --new-window --class=scratch-browser
-for_window [class="scratch-browser"]   \
-    move to scratchpad,                \
-    mark scratch-browser
-
-
-
-exec $home/IRCCloud-linux-armv7l/IRCCloud
-for_window [class="irccloud-nativefier-36ef11"]   \
-    move to scratchpad,                \
-    mark scratch-comm
-
-exec $term --app-id scratch-fm -a scratch-fm -e yazi
-for_window [app_id="scratch-fm"]  \
-    move to scratchpad,             \
-    mark scratch-fm
-
 seat seat0 hide_cursor 3000
 
-font FiraMonoNerdFont 18
+font FiraCode Nerd Font SemBd 18
 
 include /etc/sway/config-vars.d/*
 
@@ -83,7 +70,11 @@ exec_always ~/.config/sway/autotiling.py
 
 set $perm chmod 0700 /run/user/$(id -u)
 
-exec $perm && ~/.local/bin/wpaperd -d
+exec $perm && swww-daemon
+# exec $perm && ~/.local/bin/wpaperd -d
+
+exec swaymsg opacity set 0.95
+smart_gaps on
 
 #
 # Example configuration:
@@ -92,15 +83,23 @@ output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-default_border none
+default_border pixel 4
+smart_borders on
+smart_gaps on
 gaps inner 10
 gaps outer 5
 
+bindsym $mod+w exec ~/.config/rofi/bgselector/bgselector.sh
+
 # Notification Daemon
-exec swaync
+# exec swaync
 
 # Toggle control center
-bindsym $mod+Shift+n exec swaync-client -t -sw
+# bindsym $mod+Shift+n exec swaync-client -t -sw
+
+bindsym $mod+d exec eww open my-clock --toggle
+bindsym $mod+c exec notify-send -t 10000 \"📅\n$(ccal)\"
+bindsym $mod+Ctrl+Return exec /home/fernando/.config/eww/dashboard/launch_dashboard
 
 bindsym XF86AudioRaiseVolume    \
     exec pamixer -i 5           \
@@ -157,7 +156,8 @@ bindsym $mod+Ctrl+l exec wlogout
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec ~/.config/sway/open-based-on-workspace.raku open
+    bindsym $mod+Shift+Return exec $term
 
     # Start a browser
     bindsym $mod+Alt+k exec $browser
@@ -316,10 +316,15 @@ bindsym $mod+Shift+Alt+s mode "screenshot"
 
 set $hide-all-but exec ~/.config/sway/hide-all.sh
 mode "open" {
-    bindsym j         $hide-all-but "scratch-term"
-    bindsym k         $hide-all-but "scratch-browser"
-    bindsym l         $hide-all-but "scratch-fm"
-    bindsym Semicolon $hide-all-but "scratch-comm"
+    bindsym j         workspace number 1 ; mode "default"
+    bindsym k         workspace number 2 ; mode "default"
+    bindsym l         workspace number 3 ; mode "default"
+    bindsym Semicolon workspace number 4 ; mode "default"
+
+    bindsym Shift+j         move container to workspace number 1 ; mode "default"
+    bindsym Shift+k         move container to workspace number 2 ; mode "default"
+    bindsym Shift+l         move container to workspace number 3 ; mode "default"
+    bindsym Shift+Semicolon move container to workspace number 4 ; mode "default"
 
     bindsym q mode "default" ; kill
     bindsym $mod+q mode "default" ; kill
@@ -370,6 +375,39 @@ mode "wallpaper" {
 }
 bindsym $mod+Shift+Slash mode "wallpaper"
 
+mode "paper" {
+    bindsym $mod+Left exec papersway-msg focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right exec papersway-msg focus right
+    bindsym $mod+Shift+Left exec papersway-msg move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move exec papersway-msg move right
+    bindsym $mod+f exec papersway-msg width toggle
+    bindsym $mod+o exec papersway-msg other-column
+    bindsym $mod+a exec papersway-msg fresh-workspace
+    bindsym $mod+n exec papersway-msg fresh-workspace send
+    bindsym $mod+t exec papersway-msg fresh-workspace take
+    bindsym $mod+b exec papersway-msg bury-workspace
+    bindsym $mod+e exec papersway-msg absorb-expel left
+    bindsym $mod+r exec papersway-msg absorb-expel right
+    bindsym $mod+minus exec papersway-msg cols decr
+    bindsym $mod+equal exec papersway-msg cols incr
+    bindsym $mod+u exec papersway-msg workspace prev
+    bindsym $mod+i exec papersway-msg workspace next
+    bindsym $mod+Shift+u exec papersway-msg move-to-workspace prev
+    bindsym $mod+Shift+i exec papersway-msg move-to-workspace next
+    bindsym $mod+c [con_mark=caffeinated] inhibit_idle none; \
+        inhibit_idle open, mark caffeinated
+    bindsym $mod+Shift+c [con_mark=caffeinated] inhibit_idle none, \
+        mark --toggle caffeinated
+
+    bindsym $mod+Shift+p mode "default"
+}
+bindsym $mod+Shift+p mode "paper"
+for_window [con_mark=caffeinated] inhibit_idle open
+
 mode "quit" {
     bindsym $mod+Shift+q exit
 
@@ -397,8 +435,11 @@ bindsym $mod+Shift+q mode "quit"
 #     }
 # }
 
-bar {
-    swaybar_command waybar
-}
+# bar {
+#     swaybar_command papersway
+#     swaybar_command waybar
+# }
 
-include /etc/sway/config.d/*
+# include /etc/sway/config.d/*
+
+include ~/.config/sway/colors

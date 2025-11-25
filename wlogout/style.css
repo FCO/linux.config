@@ -1,4 +1,4 @@
-@import '../../.cache/hellwal/waybar-colors.css';
+@import './colors.css';
 
 * {
     font-family: "FiraCode Nerd Font SemBd", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
@@ -8,7 +8,7 @@
 }
 
 window {
-	background: url("../../.local/state/wpaperd/wallpapers/HDMI-A-1");
+	background: url("../../.local/wallpaper");
 	background-size: cover;
 	font-size: 16pt;
 }

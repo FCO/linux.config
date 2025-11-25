@@ -1,0 +1,152 @@
+;; (defvar hour 05)
+;; (defvar min  59)
+;; (defvar min1  5)
+;; (defvar min2  9)
+;; (defvar hour1 0)
+;; (defvar hour2 9)
+
+(defvar hour_def 24)
+
+(defpoll hour
+	:interval "1s"
+	`date "+%H"`
+)
+
+(defpoll min
+	:interval "1s"
+	`date "+%M"`
+)
+
+(defpoll min1
+	:interval "1s"
+	`date "+%M" | perl -pale '$_ = (split //, $_)[0]'`
+)
+
+(defpoll min2
+	:interval "1s"
+	`date "+%M" | perl -pale '$_ = (split //, $_)[1]'`
+)
+
+(defpoll hour1
+	:interval "1s"
+	`date "+%H" | perl -pale '$_ = (split //, $_)[0]'`
+)
+
+(defpoll hour2
+	:interval "1s"
+	`date "+%H" | perl -pale '$_ = (split //, $_)[1]'`
+)
+
+(defwidget on-point-small []
+	(box
+		:visible {min == "00" && hour1 == "0"}
+		(label
+			:class "hour-only"
+			:text hour2
+		)
+	)
+)
+
+(defwidget on-point []
+	(box
+		:visible {min == "00" && hour1 != "0"}
+		(label
+			:class "hour-only"
+			:text hour
+		)
+	)
+)
+
+(defwidget hsmall []
+	(box
+		:visible {hour1 == "0" && min != "00" }
+		:orientation "horizontal"
+		:valign "center"
+		(label
+			:class "ehour"
+			:text hour2
+			:halign "start"
+		)
+		(box
+			:halign "end"
+			:orientation "vertical"
+			:class "vmin"
+			(label
+				:text min1
+				:halign "start"
+			)
+			(label
+				:text min2
+				:halign "end"
+			)
+		)
+	)
+)
+
+(defwidget heleven []
+	(box
+		:visible {hour == "11" }
+		:orientation "horizontal"
+		:valign "center"
+		(label
+			:class "ehour"
+			:text hour
+			:halign "start"
+		)
+		(box
+			:halign "end"
+			:orientation "vertical"
+			:class "vmin"
+			(label
+				:text min1
+				:halign "start"
+			)
+			(label
+				:text min2
+				:halign "end"
+			)
+		)
+	)
+)
+
+(defwidget broken []
+	(box
+		:visible {min != "00" && hour != "11" && hour1!= "0"}
+		:orientation "vertical"
+		:valign "center"
+		(label
+			:class "hour"
+			:text hour
+			:halign "start"
+		)
+		(label
+			:class "min"
+			:text min
+			:halign "end"
+		)
+	)
+)
+(defwidget w-clock []
+	(box
+		(on-point-small)
+		(on-point)
+		(hsmall)
+		(heleven)
+		(broken)
+	)
+)
+(defwindow my-clock
+	:monitor 0
+	:layer "bottom"
+	:class "my-clock"
+	:geometry (
+		geometry
+		:anchor "top right"
+		:width "50%"
+		:height "50%"
+	)
+	:stacking "fg"
+	:focusable false
+	(w-clock)
+)
+

@@ -1,5 +1,5 @@
 [default]
-duration = "30m"
+#duration = "30m"
 mode = "center"
 sorting = "ascending"
 queue-size = 100
@@ -14,7 +14,7 @@ path = "~/Pictures/Wallpapers"
 # [default.transition.bow-tie-vertical]
 # [default.transition.butterfly-wave-scrawler]
 # [default.transition.circle]
-# [default.transition.circle-crop]
+[default.transition.circle-crop]
 # [default.transition.circle-open]
 # [default.transition.colour-distance]
 # [default.transition.cross-wrap]
@@ -23,7 +23,7 @@ path = "~/Pictures/Wallpapers"
 # [default.transition.directional-scaled]
 # [default.transition.directional-wipe]
 # [default.transition.disolve]
-[default.transition.doom]
+# [default.transition.doom]
 # [default.transition.doorway]
 # [default.transition.dreamy]
 # [default.transition.dreamy-zoom]

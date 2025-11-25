@@ -1,0 +1,29 @@
+[Data Source]
+DisplayName=fernandocorrea@gmail.com
+Enabled=true
+Parent=68cb28036006a0cdd9a6b62ee76b941f566e3525
+
+[Mail Submission]
+SentFolder=folder://local/Sent
+TransportUid=c09250dda109e983ce8c78250c0de86abd105b6d
+RepliesToOriginFolder=false
+UseSentFolder=true
+
+[Mail Composition]
+Bcc=
+Cc=
+DraftsFolder=folder://c0370c036ef6c9bba300b9e1552bf81dc4ba89f7/%5bGmail%5d/Drafts
+ReplyStyle=default
+SignImip=true
+TemplatesFolder=
+StartBottom=inconsistent
+TopSignature=inconsistent
+Language=
+
+[Mail Identity]
+Address=fernandocorrea@gmail.com
+Aliases=
+Name=
+Organization=
+ReplyTo=
+SignatureUid=none

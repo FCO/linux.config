@@ -1,0 +1,4 @@
+client.focused    #1A1B26 #1A1B26 #C0CAF5 #C0CAF5 #C0CAF5
+client.unfocused  #1A1B26 #1A1B26 #C0CAF5 #414868 #414868
+client.background #1A1B26 #1A1B26 #C0CAF5 #414868 #414868
+client.urgent     #1A1B26 #1A1B26 #C0CAF5 #ff0000 #ff0000

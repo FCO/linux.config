@@ -1,0 +1,26 @@
+reddit:
+  client_id: tnvZl1JS8SUqJuP7So4hhQ
+  client_secret: BQPeYSDtuDdSQqEK1nvJaibEQ6wjyQ
+  user_agent: reddix-dev/0.1 (+https://github.com/ck-zhang/reddix)
+  scopes:
+  - identity
+  - mysubreddits
+  - read
+  - vote
+  - submit
+  - subscribe
+  redirect_uri: http://127.0.0.1:65010/reddix/callback
+ui:
+  theme: default
+media:
+  cache_dir: /home/fernando/.cache/reddix
+  max_size_bytes: 524288000
+  default_ttl: 6h
+  workers: 2
+  max_queue_depth: 16
+player:
+  video_command:
+  - mpv
+  - --fs
+  - '%URL%'
+  video_detach: true

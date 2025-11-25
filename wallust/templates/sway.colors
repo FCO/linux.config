@@ -1,0 +1,4 @@
+client.focused    {{background}} {{background}} {{foreground}} {{cursor}} {{cursor}}
+client.unfocused  {{background}} {{background}} {{foreground}} {{color0}} {{color0}}
+client.background {{background}} {{background}} {{foreground}} {{color0}} {{color0}}
+client.urgent     {{background}} {{background}} {{foreground}} #ff0000 #ff0000

@@ -1,4 +1,5 @@
-@import '../../.cache/hellwal/waybar-colors.css';
+/* @import '../../.cache/hellwal/waybar-colors.css'; */
+@import url("colors.css");
 /* -- Global rules -- */
 * {
   border: none;
