@@ -1,11 +1,11 @@
-;; (defvar hour 05)
-;; (defvar min  59)
-;; (defvar min1  5)
-;; (defvar min2  9)
-;; (defvar hour1 0)
-;; (defvar hour2 9)
+;; (defvar hour 11)
+;; (defvar min  00)
+;; (defvar min1  0)
+;; (defvar min2  0)
+;; (defvar hour1 1)
+;; (defvar hour2 1)
 
-(defvar hour_def 24)
+(defvar hour_def "H")
 
 (defpoll hour
 	:interval "1s"
@@ -63,7 +63,7 @@
 		:orientation "horizontal"
 		:valign "center"
 		(label
-			:class "ehour"
+			:class "shour"
 			:text hour2
 			:halign "start"
 		)
@@ -85,7 +85,7 @@
 
 (defwidget heleven []
 	(box
-		:visible {hour == "11" }
+		:visible {hour == "11" && min != "00" }
 		:orientation "horizontal"
 		:valign "center"
 		(label
